@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { League_Spartan } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/Navbar/Navbar";
+import { Provider } from "./providers";
 
-const inter = Inter({ subsets: ["latin"] });
+const leagueSpartan = League_Spartan({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={leagueSpartan.className}>
+        {/* the entire application is wrapped with client provider */}
+        <Provider> 
+          <Navbar />
+          <main className="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto">
+            {children}
+          </main>
+        </Provider>
+      </body>  
     </html>
   );
 }
